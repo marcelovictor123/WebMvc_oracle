@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using WebMvc_oracle.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var stringConexao = "User Id=System;Password=1234;Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST =localhost)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=XE)))";
+
+builder.Services.AddDbContext<Contexto>
+    (options => options.UseOracle(stringConexao));
 
 var app = builder.Build();
 
